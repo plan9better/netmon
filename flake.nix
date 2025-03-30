@@ -17,7 +17,7 @@
 
         naersk-lib = pkgs.callPackage naersk {};
         daemon = naersk-lib.buildPackage ./daemon;
-        daemonBuildInputs = with pkgs; [cargo rustc rustfmt pre-commit rustPackages.clippy];
+        daemonBuildInputs = with pkgs; [cargo rustc];
 
         hub = pkgs.ocamlPackages.buildDunePackage {
           pname = "hub";
@@ -35,9 +35,28 @@
         sightBuildInputs = with pkgs; [pnpm_10 nodejs_23];
       in {
         packages.daemon = daemon;
+        daemon = pkgs.mkShell {
+          buildInputs = with pkgs;
+            [
+              rust-analyzer
+              lldb
+            ]
+            ++ daemonBuildInputs;
+        };
+
         packages.hub = hub;
+        hub = pkgs.mkShell {
+          buildInputs = with pkgs;
+            [
+              ocamlPackages.ocaml-lsp
+            ]
+            ++ hubBuildInputs;
+        };
+
         devShell = pkgs.mkShell {
-          buildInputs = daemonBuildInputs ++ hubBuildInputs ++ sightBuildInputs;
+          buildInputs = with pkgs; [
+            act
+          ];
           RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
         };
       }
