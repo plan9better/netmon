@@ -1,0 +1,44 @@
+name: "Build daemon"
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - "daemon/**"
+      - "*.nix"
+      - ".github/workflows/**"
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    name: "Format Check"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v26
+
+      - name: Check formatting
+        run: |
+          cd daemon
+          nix develop -c cargo fmt --check
+
+  lint:
+    runs-on: ubuntu-latest
+    name: "Lint Check"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v26
+
+      - name: Run Clippy
+        run: |
+          cd daemon
+          nix develop -c cargo clippy --all-targets --all-features -- -D warnings
+
+  build:
+    runs-on: ubuntu-latest
+    name: "Build Daemon"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v26
+
+      - name: Build
+        run: nix build .#daemon
