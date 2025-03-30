@@ -1,6 +1,6 @@
 # Netmon
 
-![Netmon Mascot](docs/netmon-32.png)
+![Netmon Mascot](docs/netmon.png)
 
 **Netmon** is a Kubernetes-deployed network traffic visualizer built to help you monitor and understand network activity at a low-level. Whether you're debugging cluster traffic, learning Kubernetes, or just curious about packets flying through your system, Netmon has you covered. It’s powered by Rust for performance, Nix for reproducible builds, and a pixel-art mascot to keep things fun.
 

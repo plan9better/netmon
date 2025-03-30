@@ -1,0 +1,6 @@
+# dune init proj hub
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/patrykwojnarowski/.cache/dune/db
+# Workspace root: /Users/patrykwojnarowski/dev/netmon/hub
+# Auto-detected concurrency: 8

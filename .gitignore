@@ -1,2 +1,7 @@
 /target
 /result
+
+sight/node_modules
+sight/.cache
+sight/build
+sight/.env
