@@ -1,4 +1,4 @@
-name: "Build daemon + checks"
+name: "nix build daemon + checks"
 
 on:
   pull_request:
