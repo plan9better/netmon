@@ -1,5 +1,6 @@
 daemon/target
 /result
+daemon/target
 
 sight/node_modules
 sight/.cache
