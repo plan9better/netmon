@@ -1,4 +1,4 @@
-/target
+daemon/target
 /result
 
 sight/node_modules
